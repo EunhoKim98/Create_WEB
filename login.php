@@ -1,7 +1,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>TEST_WEB</title>
+        <title>BOARD_LOGIN</title>
         
         <link href="style/min.css" rel="stylesheet">
         <link href="style/sign_in.css" rel="stylesheet">
@@ -80,7 +80,7 @@
             
         </form>
         <a class="form-sublink" href="find_password.php">Forgot password?</a>
-        <p class="small text-center text-gray-soft">Don't have an account yet? <a href="register.php">Sign up</a></p>
+        <p class="small text-center text-gray-soft">Don't have an account yet? <a href="register.html">Sign up</a></p>
     </main>
     </body>
 </html>
