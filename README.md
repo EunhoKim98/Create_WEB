@@ -11,4 +11,4 @@ HTML, PHP, MySQL, JS, Python 학습하여 웹사이트 구현
 ※환경
 Apache2.4
 PHP7
-MySQL 8.0.32
+MySQL 8.0.22
