@@ -12,3 +12,29 @@ HTML, PHP, MySQL, JS, Python 학습하여 웹사이트 구현
 Apache2.4
 PHP7
 MySQL 8.0.22
+
+문서
+index.html -> 완(2023_02_05)
+sing_in    -> 완(2023_02_04)
+sign_up    -> 완(2023_02_04)
+sign_out   -> 미완(2023_02_12)
+
+/board
+main_board    -> 완(2023_02_04)
+secret_board  -> 완(2023_02_04)
+test_board    -> 완(2023_02_04)
+write         -> 완(2023_02_04)
+update        -> 미완(2023_02_15)
+delete        -> 미완(2023_02_16)
+
+/user
+profile       -> 미완(2023_02_10)
+settings      -> 미완(2023_02_11)
+
+기타
+jwt
+jwt_check
+이메일 인증
+파일 업로드
+댓글, 추천
+조회수
