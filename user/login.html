@@ -3,8 +3,8 @@
         <meta charset="utf-8">
         <title>BOARD_LOGIN</title>
         
-        <link href="style/min.css" rel="stylesheet">
-        <link href="style/sign_in.css" rel="stylesheet">
+        <link href="../style/min.css" rel="stylesheet">
+        <link href="../style/sign_in.css" rel="stylesheet">
         <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -59,6 +59,28 @@
     </style>
     </head>
     <body class="text-center">
-      <h1>Hi</h1>
+    
+    <main class="form-signin w-100 m-auto">
+        <h1 >Login</h1><br><br>
+        <img class="mb-4" src="../image/logo.png" alt="" width="150" height="150">
+        
+        <form name="loginform" id="loginform" action="check_login.php" method="post">
+        
+            <div class="form-floating">
+                
+                <input type="email" class="form-control" id="floatingInput" value size="20" placeholder="name@example.com">
+                <label for="user_login">Email</label>
+              </div>
+            <div class="form-floating">
+                <input type="password" class="form-control" id="floatingPassword" value size="20" placeholder="Password">
+                <label for="user_login">password</label>
+              </div>
+            <br>
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+            
+        </form>
+        <a class="form-sublink" href="find_password.php">Forgot password?</a>
+        <p class="small text-center text-gray-soft">Don't have an account yet? <a href="register.html">Sign up</a></p>
+    </main>
     </body>
 </html>
