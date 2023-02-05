@@ -38,3 +38,14 @@ jwt_check<br/>
 파일 업로드<br/>
 댓글, 추천<br/>
 조회수<br/>
+
+DB<br/>
+user table<br/>
+ID(PK) PW NickName FirstName LastName Address
+
+article table<br/>
+num(index - PK) board Title(str) Content File  NickName(FK) PW
+
+
+
+JWT 공부<br/>
