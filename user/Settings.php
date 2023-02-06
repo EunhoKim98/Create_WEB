@@ -71,37 +71,24 @@
         <div class="col-md-7 col-lg-8">
         <form class="needs-validation" action="register.php" method="post">
           <div class="row g-3">
-            <div class="col-sm-6">
-              <label for="firstName" class="form-label">First name</label>
-              <input type="text" class="form-control" id="firstName" placeholder="" value="" required="">
-              <div class="invalid-feedback">
-                Valid first name is required.
-              </div>
-            </div>
-
-            <div class="col-sm-6">
-              <label for="lastName" class="form-label">Last name</label>
-              <input type="text" class="form-control" id="lastName" placeholder="" value="" required="">
-              <div class="invalid-feedback">
-                Valid last name is required.
-              </div>
-            </div>
-
-            <div class="col-12">
-              <label for="Email" class="form-label">Email</label>
-              <div class="input-group has-validation">
-              <input type="email" class="form-control" id="floatingInput" value size="20" placeholder="name@example.com" required="">
-              <div class="invalid-feedback">
-                  Your Email is required.
-                </div>
-              </div>
-            </div>
+            
 
             <div class="col-12">
               <label for="Password" class="form-label">Password</label><br>
               <label for="Password" class="form-label" style="font-size:12px;">Password must be at least 8 digits.
                 Must contain at least one special character.</label>
               <input type="text" class="form-control" id="Password" placeholder="********" required="">
+              <div class="invalid-feedback">
+                Password must be at least 8 digits.
+                Must contain at least one special character.
+              </div>
+            </div>
+
+            <div class="col-12">
+              <label for="Password" class="form-label">Confirm password</label><br>
+              <label for="Password" class="form-label" style="font-size:12px;">Password must be at least 8 digits.
+                Must contain at least one special character.</label>
+              <input type="text" class="form-control" id="Confirm_Password" placeholder="********" required="">
               <div class="invalid-feedback">
                 Password must be at least 8 digits.
                 Must contain at least one special character.
