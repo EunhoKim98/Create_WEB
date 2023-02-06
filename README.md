@@ -40,12 +40,14 @@ jwt_check<br/>
 조회수<br/>
 
 DB<br/>
+<img src=image/1.png width=50px, height=50px>
+
 user table<br/>
 ID(PK) PW NickName FirstName LastName Address
 
 article table<br/>
-num(index - PK) board Title(str) Content File  NickName(FK) PW
-
+index(index - PK) board Title(str) Content File(longblob)  NickName(FK) PW
+<!--대용량 데이터 업로드 https://anotherspringfield.tistory.com/100-->
 
 
 JWT 공부<br/>
