@@ -40,7 +40,7 @@ jwt_check<br/>
 조회수<br/>
 
 DB<br/>
-<img src=image/1.png width=500px, height=500px>
+<img src=image/1.png>
 
 user table<br/>
 ID(PK) PW NickName FirstName LastName Address
