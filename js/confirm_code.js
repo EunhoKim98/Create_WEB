@@ -1,4 +1,4 @@
-const check_login = () => {
+const confirmId = () => {
     var userid = document.getElementById("email");
     var result = document.getElementById('result');
     var xhr = new XMLHttpRequest();

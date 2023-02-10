@@ -15,7 +15,7 @@ function login($username, $password) {
 
     // Encrypt the session ID with the user ID as an MD5 hash and store it in a cookie
     setcookie("SESSION_ID", md5(session_id() . $user['email']), time() + (86400 * 30), "/");
-    echo '<script>location.href="../board/main_board.php"</script>';
+    echo '<script>location.href="../board/main_board.php?email"</script>';
     return true;
   }
   echo "<script>alert('Invalid ID or password.');</script>";
