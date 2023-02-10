@@ -1,64 +1,30 @@
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>BOARD_LOGIN</title>
-        
-        <link href="../style/min.css" rel="stylesheet">
-        <link href="../style/sign_in.css" rel="stylesheet">
-        <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
+<?php
 
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
+session_start();
 
-      .b-example-divider {
-        height: 3rem;
-        background-color: rgba(0, 0, 0, .1);
-        border: solid rgba(0, 0, 0, .15);
-        border-width: 1px 0;
-        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
-      }
+function login($username, $password) {
+  // Connect to the database and retrieve the user information
+  $conn = mysqli_connect("localhost", "root", "hacker98!", "web") or die("Can't");
+  $query = "SELECT * FROM user WHERE email = '$username'";
+  $result = mysqli_query($conn, $query) or die('cantttt'); 
+  $user = mysqli_fetch_assoc($result);
+  // Check if the provided password matches the stored password
+  if ($user['pw'] == $password) {
+    // Store the user ID in the session
+    $_SESSION['email'] = $user['email'];
 
-      .b-example-vr {
-        flex-shrink: 0;
-        width: 1.5rem;
-        height: 100vh;
-      }
+    // Encrypt the session ID with the user ID as an MD5 hash and store it in a cookie
+    setcookie("SESSION_ID", md5(session_id() . $user['email']), time() + (86400 * 30), "/");
+    echo '<script>location.href="../board/main_board.php"</script>';
+    return true;
+  }
+  echo "<script>alert('Invalid ID or password.');</script>";
+  echo "<script>history.back();</script>";
+  
+  return false;
+}
 
-      .bi {
-        vertical-align: -.125em;
-        fill: currentColor;
-      }
-
-      .nav-scroller {
-        position: relative;
-        z-index: 2;
-        height: 2.75rem;
-        overflow-y: hidden;
-      }
-
-      .nav-scroller .nav {
-        display: flex;
-        flex-wrap: nowrap;
-        padding-bottom: 1rem;
-        margin-top: -1px;
-        overflow-x: auto;
-        text-align: center;
-        white-space: nowrap;
-        -webkit-overflow-scrolling: touch;
-      }
-    </style>
-    </head>
-    <body class="text-center">
-      <h1>Hi</h1>
-    </body>
-</html>
+  $ID = $_POST['email'];
+  $PW = $_POST['password'];
+  login($ID, $PW);
+?>

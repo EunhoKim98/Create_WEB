@@ -1,3 +1,6 @@
+<?php 
+      include('../check_session.php');
+?>
 <html lang="ko"><head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -106,7 +109,7 @@
             <li><a class="dropdown-item" href="../user/Profile.php">Profile</a></li> <!--내가 쓴 글-->
               <li><a class="dropdown-item" href="../user/Settings.php">Settings</a></li> <!--개인정보 수정-->
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="../sign_out.php">Sign out</a></li>
+              <li><a class="dropdown-item" href="../user/sign_out.php">Sign out</a></li>
             </ul>
           </div>
 

@@ -1,3 +1,6 @@
+<?php 
+      include('../check_session.php');
+?>
 <html>
 <head>
     <meta charset="utf-8">

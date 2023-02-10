@@ -1,9 +1,12 @@
-<html lang="ko"><head>
+<?php 
+      include('../check_session.php');
+?>
+<html lang="ko">
+  <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Main Board</title>
     <link href="../style/min.css" rel="stylesheet">
-
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -100,13 +103,13 @@
 
           <div class="dropdown text-end" style="margin-right:6%">
             <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-              <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+              <img src="../image/logo.png" width="32" height="32" class="rounded-circle">
             </a>
             <ul class="dropdown-menu text-small">
             <li><a class="dropdown-item" href="../user/Profile.php">Profile</a></li> <!--내가 쓴 글-->
               <li><a class="dropdown-item" href="../user/Settings.php">Settings</a></li> <!--개인정보 수정-->
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="../sign_out.php">Sign out</a></li>
+              <li><a class="dropdown-item" href="../user/sign_out.php">Sign out</a></li>
             </ul>
           </div>
 
