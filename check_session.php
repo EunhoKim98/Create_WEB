@@ -7,7 +7,8 @@ if (!isset($_SESSION['SESSION_ID'])) {
   // Check if the encrypted session ID matches the expected value
   if ($_COOKIE['SESSION_ID'] === md5(session_id() . $_SESSION['email'])) {
     // The session is authenticated
-    return true;
+    return true;  
+
   } else {
     // The encrypted session ID does not match the expected value
     echo "<script>alert('You must login first.');</script>";

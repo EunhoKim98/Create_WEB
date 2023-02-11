@@ -1,25 +1,17 @@
 <?php
 
 // Function to send an email with a confirmation link
-function send_confirmation_email($email, $confirmation_code, $url) {
+function send_confirmation_email($email, $confirmation_code) {
   $subject = "Email Confirmation";
   $message = "Please click the following link to confirm your email: ";
-  $message .= "http://127.0.0.1/confirm_email.php?email=" . urlencode($email) . "&code=" . urlencode($confirmation_code);
-  $headers = 'From: webmaster<rpqls159@naver.com>\r\n';
-  echo "<script>alert(1);</script>";
+  $message .= "$confirmation_code";
+  $headers = 'From: webmaster<AITON_Board@gmail.com>\r\n';
   // Send the email
-  $result = mail($email, $subject, $message, $headers);
-  if($result){
-    echo "success!!";
-  }
-  else{
-    error_log($email, 0);
-    echo "fail!!";
-    }
+  mail($email, $subject, $message, $headers);
+  
   echo "<form name =confirm action=$url method='post'>";
   echo "<input type=hidden name='confirm_code' value=$confirmation_code>";
   echo "</form>";
-  echo "<script>alert(3);</script>";
 }
 
 

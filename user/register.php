@@ -1,6 +1,6 @@
 <?php
   include('../mail.php');
-
+  
 
   $conn = mysqli_connect("localhost", "root", "hacker98!", "web") or die ("Can't access DB");
   $first_name = $_POST['FirstName'];
@@ -16,11 +16,13 @@
   $result = mysqli_query($conn, $insert_query);
   echo "<script>alert('A verification code has been sent to the email. Please check.')</script>";
 
+
   $confirm_code = uniqid();  
-  send_confirmation_email($email, $confirm_code, './user/input_mail_code.php');
-  
+  send_confirmation_email($email, $confirm_code);
+  $insert_code = "INSERT INTO confirmation_code(code, email) VALUES ('$confirm_code', '$email')";
+  mysqli_query($conn, $insert_code);
   mysqli_close($conn);
-  echo "<script>location.href='input_mail_code.html?email=$email'</script>";
+  echo "<script>location.href='check_code.html'</script>";
 
   
 
