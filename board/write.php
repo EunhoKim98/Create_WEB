@@ -183,15 +183,64 @@
       </div>
     </nav>
 
+    <?php
+      if(isset($_POST["title"]) && isset($_POST["password"]) && isset($_POST["content"]) && isset($_FILES["file"])) {
+        // Get the posted data
+        $title = $_POST["title"];
+        $password = $_POST["password"];
+        $content = $_POST["content"];
+        $file = $_FILES["file"];
+
+        // Check if the file was uploaded
+        if ($file["error"] === UPLOAD_ERR_OK) {
+          // Set the target directory and file name
+          $target_dir = "../uploads/";
+          $target_file = $target_dir . basename($file["name"]);
+
+          // Check if the file already exists
+          if (file_exists($target_file)) {
+            echo "Sorry, the file already exists.";
+            $uploadOk = 0;
+          }
+
+          // Check the file size
+          if ($file["size"] > 500000) {
+            echo "Sorry, the file is too large.";
+            $uploadOk = 0;
+          }
+
+          // Allow certain file formats
+          $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+          if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
+            echo "Sorry, only JPG, JPEG, PNG, and GIF files are allowed.";
+            $uploadOk = 0;
+          }
+
+          // Upload the file
+          if ($uploadOk === 0) {
+            echo "Sorry, your file was not uploaded.";
+          } else {
+            if (move_uploaded_file($file["tmp_name"], $target_file)) {
+              echo "The file ". basename($file["name"]). " has been uploaded.";
+
+              // Save the data to a file or a database
+              // ...
+
+              echo "Post saved successfully!";
+            } else {
+              echo "Sorry, there was an error uploading your file.";
+            }
+          }
+        } else {
+          echo "Sorry, there was an error uploading your file.";
+        }
+      }
+    ?>
 
   <div class="container">
     <br>
     <h1>Write Article</h1>
-    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-    <div class="input-group mb-3"> <!-- Nick Name 받아와야 함 -->
-          <span class="input-group-text" id="inputGroup-sizing-default" style="height:50px;">Nick Name</span>
-          <input type="text" name="nickname" required class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-    </div>
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST" enctype="multipart/form-data">
     
     <div class="input-group mb-3">
           <span class="input-group-text" id="inputGroup-sizing-default" style="height:50px;">TITLE</span>
@@ -200,19 +249,20 @@
 
     <div class="input-group input-group-sm mb-3">
       <span class="input-group-text" id="inputGroup-sizing-sm">Password</span>
-      <input type="password" name="password" required class="form-control"  minlength="8" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+      <input type="password" name="password" class="form-control"  minlength="8" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
     </div>
 
     <div class="form-floating">
-      <textarea class="form-control" name="contents" style="height:60%;" required placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+      <textarea class="form-control" name="content" style="height:60%;" required placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
       <label for="floatingTextarea2">Content</label>
     </div>
     <div class="input-group mb-3">
-      <input type="file" class="form-control" id="inputGroupFile02">
+      <input type="file" name="file" class="form-control" id="inputGroupFile02">
       <label class="input-group-text" for="inputGroupFile02">Upload</label>
     </div>
       <input type="submit" value="Post">
     </form>
   </div>
+
 </body>
 </html>
