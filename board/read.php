@@ -102,6 +102,52 @@
         border: none;
         border-radius: 5px;
       }
+
+      <style>
+        .post {
+            width: 500px;
+            border: 1px solid lightgray;
+            border-radius: 10px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        .post-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .post-header h2 {
+            margin: 0;
+        }
+
+        .post-header img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+
+        .post-body {
+            text-align: center;
+        }
+
+        .post-body img {
+            width: 100%;
+        }
+
+        .post-footer {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .post-footer p {
+            margin: 0;
+        }
+
+
   </style>
    <link href="dashboard.css" rel="stylesheet">
   <style type="text/css">/* Chart.js */
@@ -188,9 +234,11 @@
   <div class="container">
     <br>
     <?php
-        #$idx = $_GET('idx');
+        if(isset($_GET[idx])){
+          $idx = $_GET[idx];
+        }
         $conn = mysqli_connect("localhost", "root", "hacker98!", "web") or die ("Can't access DB");
-        $query = "SELECT * FROM article";
+        $query = "SELECT * FROM article WHERE idx = '$idx'";
         $result = mysqli_query($conn, $query) or die("can't");
         $row = mysqli_fetch_assoc($result);
         $email = $row['email'];
@@ -198,54 +246,68 @@
         $content = $row['content'];
         $date = explode("-",$row['date']);
         $file = $file['file'];
-        echo "<script>alert($file);</script>";
+
         $date[1] = date("F", mktime(0, 0, 0, $date[1], 10));
-        echo "<article class='blog-post'>";
-        echo "<h1 class='blog-post-title mb-1'>Read Article</h1><hr>";
-        echo "<h2 style='text-align:left;'>$title</h2>";
-        echo "<p class='blog-post-meta' style='text-align:left;'>$date[1] $date[2]".", $date[0] by $email</p>";
+
+        echo '<div class="post">';
+        echo '<div class="post-header">';
+        echo '<img src="../image/logo.png" alt="Profile Picture">';
+        echo '<h2>' . $row["title"] . '</h2>';
+        echo '</div>';
+        echo "<p class='blog-post-meta' style='text-align:left;'>$date[1] $date[2]".", $date[0] by $email";
+        echo '<a style="float: right;">' . $row["hit"]. '</a>';
+        echo '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="display:inline-block; float: right; margin-top:1%;">';
+        echo '<path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"></path>';
+        echo '<path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"></path>';
+        echo '</svg></p>';
+
+        echo '<hr><div class="post-body">';
+        #echo '<img src="' . $row["file"] . '" alt="Post Image">';
+        echo '<p style="text-align:left;">' . $row["content"] . '</p>';
         echo "<p style='text-align:right;'><a style='text-align:right;' href='$file' download>Download File</a></p><hr>";
-        echo "<p style='text-align:left;'>$content</p>";
-        echo "<article class='blog-post'>";
-    
+
+
+        #recommend
+        echo '<div class="input-group mb-3" style="display:inline-block;">';
+        echo "<form action='recommend.php' style='margin:0%; width:10%; float:left; display:inline-block;' method='POST'>";
+        echo "<input type='hidden' name='recommend_idx' value='" . $idx . "'>";
+        echo "<button type='submit' class='btn btn-outline-danger' style='display:inline-block;'>";
+        echo '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">';
+        echo '<path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"></path></svg> ';
+        echo $row["likes"].'</button>';
+        echo "</form>";
+      
+        #comment
+        echo '<form action="add_comment.php" style="margin:0%; float:left; width:90%; display:inline-block;" method="post">';
+        echo '<div class="input-group mb-3">';
+        echo '<input type="textarea" class="form-control" name="comment" placeholder="Write coment" aria-describedby="basic-addon2"">';
+        echo '<div class="input-group-append">';
+        echo '<button class="btn btn-outline-secondary" type="button">Post</button></div></div>';
+        echo '</form></div>';
+        echo '</div><div class="post-footer">';
+        echo '</div></div><hr>';
     ?>
-    <!--
-    <form action="write.php" method="POST" enctype="multipart/form-data">
+
+    <!-- The comments section -->
+    <div class="comments">
+    <h3 style="text-align:left;">Comments</h3><br>
     
-    <div class="input-group mb-3">
-          <span class="input-group-text" id="inputGroup-sizing-default" style="height:50px;">TITLE</span>
-          <input type="text" name="title" required class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+        <?php
+          $comments_sql = "SELECT * FROM comments WHERE post_id = $idx ORDER BY comment_idx DESC";
+          $comments_result = mysqli_query($conn, $comments_sql);
+
+          while($comment = mysqli_fetch_assoc($comments_result)){
+            echo "<tr>";
+            echo "<p style='text-align:left;'><b>$comment[email]</b>&nbsp";
+            echo "$comment[comment]</p>";
+            echo "<p style='text-align:left; font-size:10px;'>$comment[date]</p>";
+            echo "</tr>";
+          }
+          ?>
+        
+      
     </div>
 
-    <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <label class="input-group-text" for="inputGroupSelect01">Board</label>
-    </div>
-    <select class="custom-select" name="board" style="width:92%;" id="inputGroupSelect01">
-      <option selected>Choose</option>
-      <option value="1">Main Board</option>
-      <option value="2">Secret Board</option>
-      <option value="3">Test Board</option>
-    </select>
-  </div>
-
-    <div class="input-group input-group-sm mb-3">
-      <span class="input-group-text" id="inputGroup-sizing-sm">Password</span>
-      <input type="password" name="password" class="form-control" placeholder="not required"  minlength="4" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-    </div>
-
-    <div class="form-floating">
-      <textarea class="form-control" name="content" style="height:60%;" required placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
-      <label for="floatingTextarea2">Content</label>
-    </div>
-    <div class="input-group mb-3">
-      <input type="file" name="file" class="form-control" id="inputGroupFile02">
-      <label class="input-group-text" for="inputGroupFile02">Upload</label>
-    </div>
-      <input type="submit" value="Post">
-    </form>
-  </div>
-  -->
 
     </div>
 </body>

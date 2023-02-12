@@ -213,7 +213,7 @@
               echo "<td><a href='read.php?idx=" . $row['idx'] ." '>" . $row['email'] . "</a></td>";
               echo "<td><a href='read.php?idx=" . $row['idx'] ." '>" . $row['date'] . "</a></td>";
               echo "<td><a href='read.php?idx=" . $row['idx'] ." '>" . $row['hit'] . "</a></td>";
-              echo "<td><a href='read.php?idx=" . $row['idx'] ." '>" . $row['like'] . "</a></td>";
+              echo "<td><a href='read.php?idx=" . $row['idx'] ." '>" . $row['likes'] . "</a></td>";
               echo "</tr>";
 
             }
