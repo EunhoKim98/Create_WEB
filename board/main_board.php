@@ -74,7 +74,14 @@
       .dropdown-toggle {
         outline: 0;
       }
-
+      a {
+        color:black;
+        text-decoration-line: none;
+      /*   text-decoration-line: underline; */
+      /*   text-decoration-line: overline; */
+      /*   text-decoration-line: line-through; */
+      /*   text-decoration-line: underline line-through overline; */
+      }
 
 
     </style>
@@ -165,7 +172,7 @@
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
       <br>
       <h2>Main Board</h2>
-      <a class="btn btn-primary" style="float:right;" href="write.php" role="button">Write</a>
+      <a class="btn btn-primary" style="float:right;" href="write.html" role="button">Write</a>
 
       <form class="w-100 me-3" role="search" action="search_result.php"  method="GET">
       <div class="input-group mb-3" style="width: 100%;">
@@ -194,32 +201,24 @@
           </thead>
           <tbody>
           <?php
+            echo "<script>function click(s){location.href='read?s';}</script>";
             $conn = mysqli_connect("localhost", "root", "hacker98!", "web") or die ("Can't access DB");
-            $select = "SELECT * FROM article WHERE board = 'main'";
+            $select = "SELECT * FROM article WHERE board = 'main' ORDER BY idx DESC";
             $result = mysqli_query($conn, $select) or die("!!!!!!!!!!!!!!!");
             while($row = mysqli_fetch_array($result)){
+              $idx = $row['idx'];
               echo "<tr>";
-              echo "<td>$row[index]</td>";
-              echo "<td>$row[title]</td>";
-              echo "<td>$row[email]</td>";
-              echo "<td>$row[date]</td>";
-              echo "<td>$row[hit]</td>";
-              echo "<td>$row[like]</td>";
+              echo "<td><a href='read.php?idx=" . $row['idx'] ." '>" . $row['idx'] . "</a></td>";
+              echo "<td><a href='read.php?idx=" . $row['idx'] ." '>" . $row['title'] . "</a></td>";
+              echo "<td><a href='read.php?idx=" . $row['idx'] ." '>" . $row['email'] . "</a></td>";
+              echo "<td><a href='read.php?idx=" . $row['idx'] ." '>" . $row['date'] . "</a></td>";
+              echo "<td><a href='read.php?idx=" . $row['idx'] ." '>" . $row['hit'] . "</a></td>";
+              echo "<td><a href='read.php?idx=" . $row['idx'] ." '>" . $row['like'] . "</a></td>";
               echo "</tr>";
-            }
 
-            
-            
-          ?>
-            <tr>
-              <td>1,001</td>
-              <td>random</td>
-              <td>data</td>
-              <td>placeholder</td>
-              <td>text</td>
-              <td>hi</td>
-            </tr>
-            
+            }
+            ?>
+           
           </tbody>
         </table>
       </div>

@@ -75,6 +75,14 @@
         outline: 0;
       }
 
+      a {
+        color:black;
+        text-decoration-line: none;
+      /*   text-decoration-line: underline; */
+      /*   text-decoration-line: overline; */
+      /*   text-decoration-line: line-through; */
+      /*   text-decoration-line: underline line-through overline; */
+      }
 
 
     </style>
@@ -194,133 +202,23 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1,001</td>
-              <td>random</td>
-              <td>data</td>
-              <td>placeholder</td>
-              <td>text</td>
-              <td>hi</td>
-            </tr>
-            <tr>
-              <td>1,002</td>
-              <td>placeholder</td>
-              <td>irrelevant</td>
-              <td>visual</td>
-              <td>layout</td>
-              <td>hi</td>
-            </tr>
-            <tr>
-              <td>1,003</td>
-              <td>data</td>
-              <td>rich</td>
-              <td>dashboard</td>
-              <td>tabular</td>
-              <td>hi</td>
-            </tr>
-            <tr>
-              <td>1,003</td>
-              <td>information</td>
-              <td>placeholder</td>
-              <td>illustrative</td>
-              <td>hi</td>
-              <td>data</td>
-            </tr>
-            <tr>
-              <td>1,004</td>
-              <td>text</td>
-              <td>random</td>
-              <td>layout</td>
-              <td>dashboard</td>
-              <td>hi</td>
-            </tr>
-            <tr>
-              <td>1,005</td>
-              <td>dashboard</td>
-              <td>irrelevant</td>
-              <td>text</td>
-              <td>hi</td>
-              <td>placeholder</td>
-            </tr>
-            <tr>
-              <td>1,006</td>
-              <td>hi</td>
-              <td>dashboard</td>
-              <td>illustrative</td>
-              <td>rich</td>
-              <td>data</td>
-            </tr>
-            <tr>
-              <td>1,007</td>
-              <td>placeholder</td>
-              <td>tabular</td>
-              <td>hi</td>
-              <td>information</td>
-              <td>irrelevant</td>
-            </tr>
-            <tr>
-              <td>1,008</td>
-              <td>random</td>
-              <td>hi</td>
-              <td>data</td>
-              <td>placeholder</td>
-              <td>text</td>
-            </tr>
-            <tr>
-              <td>1,009</td>
-              <td>placeholder</td>
-              <td>irrelevant</td>
-              <td>visual</td>
-              <td>layout</td>
-            </tr>
-            <tr>
-              <td>1,010</td>
-              <td>data</td>
-              <td>rich</td>
-              <td>hi</td>
-              <td>dashboard</td>
-              <td>tabular</td>
-            </tr>
-            <tr>
-              <td>1,011</td>
-              <td>information</td>
-              <td>placeholder</td>
-              <td>hi</td>
-              <td>illustrative</td>
-              <td>data</td>
-            </tr>
-            <tr>
-              <td>1,012</td>
-              <td>text</td>
-              <td>placeholder</td>
-              <td>hi</td>
-              <td>layout</td>
-              <td>dashboard</td>
-            </tr>
-            <tr>
-              <td>1,013</td>
-              <td>dashboard</td>
-              <td>irrelevant</td>
-              <td>hi</td>
-              <td>text</td>
-              <td>visual</td>
-            </tr>
-            <tr>
-              <td>1,014</td>
-              <td>dashboard</td>
-              <td>illustrative</td>
-              <td>hi</td>
-              <td>rich</td>
-              <td>data</td>
-            </tr>
-            <tr>
-              <td>1,015</td>
-              <td>random</td>
-              <td>tabular</td>
-              <td>information</td>
-              <td>hi</td>
-              <td>text</td>
-            </tr>
+          <?php
+            $conn = mysqli_connect("localhost", "root", "hacker98!", "web") or die ("Can't access DB");
+            $select = "SELECT * FROM article WHERE board = 'secret' ORDER BY idx DESC";
+            $result = mysqli_query($conn, $select) or die("!!!!!!!!!!!!!!!");
+            while($row = mysqli_fetch_array($result)){
+              $idx = $row['idx'];
+              echo "<tr>";
+              echo "<td><a href='read.php?idx=" . $row['idx'] ." '>" . $row['idx'] . "</a></td>";
+              echo "<td><a href='read.php?idx=" . $row['idx'] ." '>" . $row['title'] . "</a></td>";
+              echo "<td><a href='read.php?idx=" . $row['idx'] ." '>" . $row['email'] . "</a></td>";
+              echo "<td><a href='read.php?idx=" . $row['idx'] ." '>" . $row['date'] . "</a></td>";
+              echo "<td><a href='read.php?idx=" . $row['idx'] ." '>" . $row['hit'] . "</a></td>";
+              echo "<td><a href='read.php?idx=" . $row['idx'] ." '>" . $row['like'] . "</a></td>";
+              echo "</tr>";
+
+            }
+            ?>
           </tbody>
         </table>
       </div>
