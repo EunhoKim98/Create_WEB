@@ -269,23 +269,13 @@
 
         #recommend
         echo '<div class="input-group mb-3" style="display:inline-block;">';
-        echo "<form action='recommend.php' style='margin:0%; width:10%; float:left; display:inline-block;' method='POST'>";
+        echo "<form action='recommend.php' style='margin:0%; width:15%; float:left; display:inline-block;' method='POST'>";
         echo "<input type='hidden' name='recommend_idx' value='" . $idx . "'>";
         echo "<button type='submit' class='btn btn-outline-danger' style='display:inline-block;'>";
         echo '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">';
         echo '<path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"></path></svg> ';
         echo $row["likes"].'</button>';
         echo "</form>";
-      
-        #comment
-        echo '<form action="add_comment.php" style="margin:0%; float:left; width:90%; display:inline-block;" method="post">';
-        echo '<div class="input-group mb-3">';
-        echo '<input type="textarea" class="form-control" name="comment" placeholder="Write coment" aria-describedby="basic-addon2"">';
-        echo '<div class="input-group-append">';
-        echo '<button class="btn btn-outline-secondary" type="button">Post</button></div></div>';
-        echo '</form></div>';
-        echo '</div><div class="post-footer">';
-        echo '</div></div><hr>';
 
         #hits section
         $ip = $_SERVER['REMOTE_ADDR'];
@@ -302,8 +292,18 @@
           $insert_query = "INSERT INTO views (ip, watch_time, post_id) VALUES ('$ip', '$time', '$idx')";
           mysqli_query($conn, $insert_query);
         }
+      ?>
+        <!--comment-->
+        <form action="add_comment.php" style="margin:0%; float:left; width:85%; display:inline-block;" method="POST">
+        <div class="input-group mb-3">
+        <input type="textarea" class="form-control" name="comment" placeholder="Write coment" aria-describedby="basic-addon2">
+        <input type='hidden' name='idx' value="<?php echo $idx; ?>">
+        <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="submit">Post</button></div></div>
+        </form></div>
+        </div><div class="post-footer">
+        </div></div><hr>
 
-    ?>
 
     <!-- The comments section -->
     <div class="comments">
