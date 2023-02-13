@@ -12,7 +12,7 @@
 
         // Decrypt the email
         $email = md5_decrypt($encrypted_email);
-
+        
         // Check if the file was uploaded
         if ($file["error"] === UPLOAD_ERR_OK) {
           // Set the target directory and file name

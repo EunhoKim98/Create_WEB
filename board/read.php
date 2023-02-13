@@ -286,6 +286,23 @@
         echo '</form></div>';
         echo '</div><div class="post-footer">';
         echo '</div></div><hr>';
+
+        #hits section
+        $ip = $_SERVER['REMOTE_ADDR'];
+        $time = time();
+        $check_query = "SELECT * FROM views WHERE post_id = '$idx' AND ip = '$ip' AND watch_time > '$time' - 3600";
+        $result = mysqli_query($conn, $check_query);
+
+        if(mysqli_num_rows($result) == 0) {
+          // If the user has not viewed this post in the last hour, increase the view count
+          $update_query = "UPDATE article SET hit = hit + 1 WHERE idx = '$idx'";
+          mysqli_query($conn, $update_query);
+      
+          // Add a record to the views table to track this user's view
+          $insert_query = "INSERT INTO views (ip, watch_time, post_id) VALUES ('$ip', '$time', '$idx')";
+          mysqli_query($conn, $insert_query);
+        }
+
     ?>
 
     <!-- The comments section -->
