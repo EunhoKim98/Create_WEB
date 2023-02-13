@@ -1,12 +1,13 @@
 <?php
 
 session_start();
-
+$email = $_SESSION['email'];
 // Check if the session ID and encrypted user ID are both set
 if (!isset($_SESSION['SESSION_ID'])) {
   // Check if the encrypted session ID matches the expected value
   if ($_COOKIE['SESSION_ID'] === md5(session_id() . $_SESSION['email'])) {
     // The session is authenticated
+    
     return true;  
 
   } else {
