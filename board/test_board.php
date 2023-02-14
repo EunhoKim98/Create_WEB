@@ -174,17 +174,17 @@
       <h2>Test Board</h2>
       <a class="btn btn-primary" style="float:right;" href="write.html" role="button">Write</a>
 
-      <form class="w-100 me-3" role="search" action="search_result.php"  method="GET">
+      <form class="w-100 me-3" role="search" action="search_result.php"  method="POST">
       <div class="input-group mb-3" style="width: 100%;">
           <select name="category" class="form-select" >
-            <option value="All">All</option>
-            <option value="Main_Board">Main Board</option>
-            <option value="Secret_Board">Secret Board</option>
-            <option value="Test_Board">Test Board</option>
+            <option value="all">All</option>
+            <option value="main">Main Board</option>
+            <option value="secret">Secret Board</option>
+            <option value="test">Test Board</option>
             <option value="Title">Title</option>
             <option value="Content">Content</option>
           </select>
-        <input type="search" class="form-control" style="width: 85%;" placeholder="Search..." aria-label="Search">
+        <input type="search" name='search' class="form-control" style="width: 85%;" placeholder="Search..." aria-label="Search">
       </div>
     </form>
       

@@ -5,7 +5,7 @@
     $title = $_POST["title"];
     $password = $_POST["password"];
     $content = $_POST["content"];
-    $today = date("y-m-d");
+    $today = date("Y-m-d");
     $board = $_POST["board"];   
     $file = $_FILES["file"];  
 
@@ -14,6 +14,7 @@
     $conn = mysqli_connect("localhost", "root", "hacker98!", "web") or die ("Can't access DB");
     $query = "INSERT INTO article(board, title, content, file, article_pw, date, email) VALUE";
     $query .= "('$board', '$title', '$content', '$target_file', '$password', '$today', '$email')";
+    echo $query;
     $result = mysqli_query($conn, $insert_query);
     if(!$result){
       echo " ".mysqli_error($conn);

@@ -1,12 +1,12 @@
 <?php 
       include('../check_session.php');
 ?>
-<html lang="ko"><head>
+<html lang="ko">
+  <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Main Board</title>
     <link href="../style/min.css" rel="stylesheet">
-
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -74,7 +74,6 @@
       .dropdown-toggle {
         outline: 0;
       }
-
       a {
         color:black;
         text-decoration-line: none;
@@ -172,7 +171,7 @@
 
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
       <br>
-      <h2>Secret Board</h2>
+      <h2>Search Result</h2>
       <a class="btn btn-primary" style="float:right;" href="write.html" role="button">Write</a>
 
       <form class="w-100 me-3" role="search" action="search_result.php"  method="POST">
@@ -188,12 +187,11 @@
         <input type="search" name='search' class="form-control" style="width: 85%;" placeholder="Search..." aria-label="Search">
       </div>
     </form>
-      
       <div class="table-responsive">
         <table class="table table-striped table-sm">
           <thead>
             <tr>
-              <th scope="col">number</th>
+              <th scope="col">index</th>
               <th scope="col">title</th>
               <th scope="col">writer</th>
               <th scope="col">Date</th>
@@ -203,8 +201,31 @@
           </thead>
           <tbody>
           <?php
+            #search section
+            if(isset($_POST['category']) && isset($_POST['search'])){
+              $category = $_POST['category'];
+              $search = $_POST['search'];
+              $board_list = array('main', 'secret', 'test');
+              if(in_array($category, $board_list) ){
+                $column = 'board = \''.$category.'\' AND title ';
+              }
+              else if($category == 'Title'){
+                $column = 'title';
+              }
+              else if($category == 'Content'){
+                $column = 'content';
+              }
+              else{
+                echo "<script>alert('Invalid input.');history.back();</script>";
+              }
+            }
+            
+
+            # table section
+          
+            echo "<script>function click(s){location.href='read?s';}</script>";
             $conn = mysqli_connect("localhost", "root", "hacker98!", "web") or die ("Can't access DB");
-            $select = "SELECT * FROM article WHERE board = 'secret' ORDER BY idx DESC";
+            $select = "SELECT * FROM article WHERE $column = '$search'  ORDER BY idx DESC";
             $result = mysqli_query($conn, $select) or die("!!!!!!!!!!!!!!!");
             while($row = mysqli_fetch_array($result)){
               $idx = $row['idx'];
@@ -219,13 +240,15 @@
 
             }
             ?>
+           
           </tbody>
         </table>
       </div>
       <script src="../js/bootstrap.bundle.min.js" ></script>
-
     </main>
   </div>
 </div>
+
+
 
 </body></html>

@@ -25,8 +25,8 @@ secret_board  -> 완(2023_02_04)<br/>
 test_board    -> 완(2023_02_04)<br/>
 write         -> 완(2023_02_04)<br/>
 update        -> 미완(2023_02_15)<br/>
-delete        -> 미완(2023_02_16)<br/><br/>
-
+delete        -> 미완(2023_02_16)<br/>
+search_result -> 완(2023_02_14)<br/><br/>
 /user<br/>
 profile       -> 완(2023_02_14)<br/>
 settings      -> 완(2023_02_14)<br/>
@@ -40,6 +40,8 @@ session_check 완(2023_02_10)<br/>
 조회수 완(2023_02_13)<br/>
 게시글 리스트 조회 완(2023_02_12)<br/>
 게시글 클릭 및 읽기 완(2023_02_12)<br/>
+
+
 DB<br/>
 <img src=image/1.png>
 
