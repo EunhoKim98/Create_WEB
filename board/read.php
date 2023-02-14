@@ -245,7 +245,7 @@
         $title = $row['title'];
         $content = $row['content'];
         $date = explode("-",$row['date']);
-        $file = $file['file'];
+        $file = $row['file'];
 
         $date[1] = date("F", mktime(0, 0, 0, $date[1], 10));
 

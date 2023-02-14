@@ -9,22 +9,19 @@
     $board = $_POST["board"];   
     $file = $_FILES["file"];  
 
-
+    if ($file["error"] == 0) {
+          $file_name = $file["name"];
+          $file_tmp = $file["tmp_name"];
+          $file_destination = "../uploads/" . $file_name;
+          move_uploaded_file($file_tmp, $file_destination);
+      }
 
     $conn = mysqli_connect("localhost", "root", "hacker98!", "web") or die ("Can't access DB");
-    $query = "INSERT INTO article(board, title, content, file, article_pw, date, email) VALUE";
-    $query .= "('$board', '$title', '$content', '$target_file', '$password', '$today', '$email')";
-    echo $query;
-    $result = mysqli_query($conn, $insert_query);
-    if(!$result){
-      echo " ".mysqli_error($conn);
-    }
+    $insert_query = "INSERT INTO article(board, title, content, file, article_pw, date, email) VALUE";
+    $insert_query .= "('$board', '$title', '$content', '$file_destination', '$password', '$today', '$email')";
+    $result = mysqli_query($conn, $insert_query) or die('ca');
     
-    if ($file["error"] == 0) {
-      $file_name = $file["name"];
-      $file_tmp = $file["tmp_name"];
-      $file_destination = "../uploads/" . $file_name;
-      move_uploaded_file($file_tmp, $file_destination);
-  }
+    
+    echo '<script>alert("success!");location.href="../board/main_board.php";</script>';
 
 ?>
