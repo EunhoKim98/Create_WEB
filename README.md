@@ -28,8 +28,8 @@ update        -> 미완(2023_02_15)<br/>
 delete        -> 미완(2023_02_16)<br/><br/>
 
 /user<br/>
-profile       -> 미완(2023_02_10)<br/>
-settings      -> 미완(2023_02_11)<br/>
+profile       -> 완(2023_02_14)<br/>
+settings      -> 완(2023_02_14)<br/>
 <br/>
 기타<br/>
 session 완(2023_02_10)<br/>
@@ -43,11 +43,24 @@ session_check 완(2023_02_10)<br/>
 DB<br/>
 <img src=image/1.png>
 
-user table<br/>
-ID(PK) PW NickName FirstName LastName Address confirm<br/>
+<b>user table</b><br/>
+email(PK) pw nick_name first_name last_name address confirm<br/>
 
-article table<br/>
-index(index - PK) board Title(str) Content File(longblob)  NickName(FK) PW<br/><br/>
+<b>article table<br/>
+idx(index - PK) board Title(str) Content File(varchaar) article_pw hit like date<br/><br/>
+
+<b>comments</b><br/>
+comment_idx(INT PK) comment post_id(FK - article) email(FK - user)
+
+<b>recomment</b><br/>
+idx(INT PK) post_id(FK - article) email(FK - user) like
+
+<b>confirmation_code</b><br/>
+idx(INT PK) code email(FK - user)
+
+<b>views</b><br/>
+idx ip wawtch_time post_id(FK - article)  
+
 <!--대용량 데이터 업로드 https://anotherspringfield.tistory.com/100-->
 
 
