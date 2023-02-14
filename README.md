@@ -24,8 +24,8 @@ main_board    -> 완(2023_02_04)<br/>
 secret_board  -> 완(2023_02_04)<br/>
 test_board    -> 완(2023_02_04)<br/>
 write         -> 완(2023_02_04)<br/>
-update        -> 미완(2023_02_15)<br/>
-delete        -> 미완(2023_02_16)<br/>
+modify        -> 미완(2023_02_14)<br/>
+delete        -> 완(2023_02_14)<br/>
 search_result -> 완(2023_02_14)<br/><br/>
 /user<br/>
 profile       -> 완(2023_02_14)<br/>
