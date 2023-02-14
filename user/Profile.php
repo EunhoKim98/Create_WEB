@@ -162,7 +162,7 @@
 
 <nav class="navbar navbar-expand-xl navbar-dark bg-dark" aria-label="Sixth navbar example">
     <div class="container-fluid">
-      <a class="navbar-brand" href="main_board.php">AITON Board</a>
+      <a class="navbar-brand" href="../board/main_board.php">AITON Board</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample06" aria-controls="navbarsExample06" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -170,7 +170,7 @@
       <div class="collapse navbar-collapse" id="navbarsExample06">
         <ul class="navbar-nav me-auto mb-2 mb-xl-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="main_board.php">Home</a>
+            <a class="nav-link active" aria-current="page" href="../board/main_board.php">Home</a>
           </li>
         </ul>
       </div>
@@ -180,10 +180,10 @@
           <img src="../image/logo.png"  width="32" height="32" class="rounded-circle">
         </a>
         <ul class="dropdown-menu text-small">
-        <li><a class="dropdown-item" href="../user/Profile.php">Profile</a></li> <!--내가 쓴 글-->
-          <li><a class="dropdown-item" href="../user/Settings.php">Settings</a></li> <!--개인정보 수정-->
+        <li><a class="dropdown-item" href="Profile.php">Profile</a></li> <!--내가 쓴 글-->
+          <li><a class="dropdown-item" href="Settings.php">Settings</a></li> <!--개인정보 수정-->
           <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item" href="../user/sign_out.php">Sign out</a></li>
+          <li><a class="dropdown-item" href="sign_out.php">Sign out</a></li>
         </ul>
       </div>
 
@@ -196,13 +196,13 @@
       <div class="position-sticky pt-3 sidebar-sticky">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="main_board.php">
+            <a class="nav-link active" aria-current="page" href="../board/main_board.php">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home align-text-bottom" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
               Main Board
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="secret_board.php">
+            <a class="nav-link" href="../board/secret_board.php">
               <svg width="24" height="24" viewBox="0 0 16.00 16.00" class="feather feather-home align-text-bottom" xmlns="http://www.w3.org/2000/svg" fill="#0d6efd" transform="matrix(1, 0, 0, 1, 0, 0)rotate(0)" stroke="#0d6efd" stroke-width="1.04">
 
                 <g id="SVGRepo_bgCarrier" stroke-width="0"/>
@@ -216,7 +216,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="test_board.php">
+            <a class="nav-link" href="../board/test_board.php">
               <svg fill="#0d6efd"class="feather feather-shopping-cart align-text-bottom" height="28" width="28" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 511 511" xml:space="preserve">
 
                 <g id="SVGRepo_bgCarrier" stroke-width="0"/>
@@ -240,41 +240,50 @@
     <br>
     <h1 style="text-align:left; ">My information</h1><br>
     <?php
-      $select_query = "SELECT * FROM user WHERE email = '$email'";
-      $select_result = mysqli_query($conn, $select_query);
-      $row = mysqli_fetch_assoc($select_result);
+      $user_select_query = "SELECT * FROM user WHERE email = '$email'";
+      $user_select_result = mysqli_query($conn, $user_select_query);
+      $user_row = mysqli_fetch_assoc($user_select_result);
+      
+      $count_select_query = "SELECT count(*) as cnt FROM article WHERE email = '$email'";
+      $count_select_result = mysqli_query($conn, $count_select_query) or die('asd!!!!!!!Sasdas');
+      $count = mysqli_fetch_assoc($count_select_result);
 
       echo '<div class="post">';
       echo '<div class="post-header">';
       echo '<img src="../image/logo.png" style="width:150px; height:150px;" alt="Profile Picture">';
-      echo '<h2>' . $email . '</h2>';
+      echo '<ul class="list-group list-group-flush" style="text-align:left;">';
+      echo '<li class="list-group-item">' . $email . '</li>';
+      echo '<li class="list-group-item">'.$user_row['first_name'] .' &nbsp&nbsp&nbsp'. $user_row['last_name'].'</li>';
+      echo '<li class="list-group-item">'.'posts <b>'.$count[cnt].'</b></li>';
+      echo '<li class="list-group-item">'.$user_row['nick_name'].'</li>';
+      echo '</ul>';
       echo '</div>';
-      echo '<h4>'. $row["nick_name"].'</h4></div>';
+      echo '</div>';
 
       echo '<br><hr><br>';
     ?>
 
-    <h1 style="text-align:left; ">my_article</h1><br>
+    <h1 style="text-align:left; ">My article</h1><br>
     <?php
-        $sql = "SELECT * FROM article WHERE email = '$email'";
-        $result = mysqli_query($conn, $sql) or die('asd!!!!!!!Sasdas');
+      $article_select_query = "SELECT * FROM article WHERE email = '$email'";
+      $article_select_result = mysqli_query($conn, $article_select_query) or die('asd!!!!!!!Sasdas');
       
       // Loop through the result and print each post
-      while ($row = mysqli_fetch_assoc($result)) {
-        $title = $row['title'];
-        $content = $row['content'];
-        $date = explode("-",$row['date']);
-        $file = $file['file'];
+      while ($article_row = mysqli_fetch_assoc($article_select_result)) {
+        $title = $article_row['title'];
+        $content = $article_row['content'];
+        $date = explode("-",$article_row['date']);
+        $file = $article_row['file'];
 
         $date[1] = date("F", mktime(0, 0, 0, $date[1], 10));
 
         echo '<div class="post">';
         echo '<div class="post-header">';
         echo '<img src="../image/logo.png" alt="Profile Picture">';
-        echo '<h2>' . $row["title"] . '</h2>';
+        echo '<h2>' . $article_row["title"] . '</h2>';
         echo '</div>';
         echo "<p class='blog-post-meta' style='text-align:left;'>$date[1] $date[2]".", $date[0] by $email";
-        echo '<a style="float: right;">' . $row["hit"]. '</a>';
+        echo '<a style="float: right;">' . $article_row["hit"]. '</a>';
         echo '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="display:inline-block; float: right; margin-top:1%;">';
         echo '<path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"></path>';
         echo '<path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"></path>';
@@ -282,7 +291,7 @@
 
         echo '<hr><div class="post-body">';
         #echo '<img src="' . $row["file"] . '" alt="Post Image">';
-        echo '<p style="text-align:left;">' . $row["content"] . '</p>';
+        echo '<p style="text-align:left;">' . $article_row["content"] . '</p>';
         echo "<p style='text-align:right;'><a style='text-align:right;' href='$file' download>Download File</a></p><hr>";
 
 
@@ -293,7 +302,7 @@
         echo "<button type='submit' class='btn btn-outline-danger' style='display:inline-block;'>";
         echo '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">';
         echo '<path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"></path></svg> ';
-        echo $row["likes"].'</button>';
+        echo $article_row["likes"].'</button>';
         echo "</form>";
 
        # <!--comment-->
