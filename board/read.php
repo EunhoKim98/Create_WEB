@@ -310,7 +310,7 @@
       
       if($email == $_SESSION['email']){
         echo '<div style="text-align:right;">';
-        echo '<a href="modify.php" class="btn btn-primary btn-lg active" role="button" style="font-size:15px;" aria-pressed="true">Modify</a> ';
+        echo '<a href="modify.php?idx='.$idx.'" class="btn btn-primary btn-lg active" role="button" style="font-size:15px;" aria-pressed="true">Modify</a> ';
         echo '<a href="delete.php?idx='.$idx.'" class="btn btn-secondary btn-lg active" role="button" style="font-size:15px;" aria-pressed="true">Delete</a><br><br><br>';
         echo '</div>';
       }
