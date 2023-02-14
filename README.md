@@ -24,7 +24,7 @@ main_board    -> 완(2023_02_04)<br/>
 secret_board  -> 완(2023_02_04)<br/>
 test_board    -> 완(2023_02_04)<br/>
 write         -> 완(2023_02_04)<br/>
-modify        -> 미완(2023_02_14)<br/>
+modify        -> 완(2023_02_14)<br/>
 delete        -> 완(2023_02_14)<br/>
 search_result -> 완(2023_02_14)<br/><br/>
 /user<br/>
@@ -43,7 +43,7 @@ session_check 완(2023_02_10)<br/>
 
 
 DB<br/>
-<img src=image/1.png>
+<img src=image/MYSQL_ERD.png>
 
 <b>user table</b><br/>
 email(PK) pw nick_name first_name last_name address confirm<br/>

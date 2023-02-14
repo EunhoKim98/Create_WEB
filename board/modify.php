@@ -206,18 +206,19 @@
     
         <div class="input-group input-group-sm mb-3">
           <span class="input-group-text" id="inputGroup-sizing-sm">Password</span>
-          <input type="password" name="password" class="form-control" placeholder="not required"  minlength="4" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+          <input type="password" name="password" value="<?php echo $row['password']?>" class="form-control" placeholder="not required"  minlength="4" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
         </div>
     
         <div class="form-floating">
-          <textarea class="form-control" name="content" style="height:60%;" required placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+          <textarea class="form-control" name="content" style="height:60%;" required placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"><?php echo $row['content']?></textarea>
           <label for="floatingTextarea2">Content</label>
         </div>
         <div class="input-group mb-3">
           <input type="file" name="file" class="form-control" id="inputGroupFile02">
           <label class="input-group-text" for="inputGroupFile02">Upload</label>
         </div>
-          <input type="submit" value="Post">
+            <button type="submit" class="btn btn-outline-success"><b>Post</b></button>
+
         </form>
       </div>
       <script src="../js/bootstrap.bundle.min.js" ></script>
