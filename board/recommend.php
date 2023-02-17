@@ -1,9 +1,10 @@
 <?php
     include_once('../check_session.php');
+    include('../DB_config.php');
 
+    
     $recommend_idx = $_POST['recommend_idx'];
     if(isset($recommend_idx)){
-        $conn = mysqli_connect("localhost", "root", "hacker98!", "web") or die ("Can't access DB");
         
         //Deduplication
         $select_query = "SELECT * FROM recommend WHERE post_id = '$recommend_idx' AND email = '$email'";

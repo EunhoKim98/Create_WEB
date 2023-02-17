@@ -1,6 +1,6 @@
-
 <?php
-    $conn = mysqli_connect("localhost", "root", "hacker98!", "web") or die ("Can't access DB");
+    include('../DB_config.php');
+
     $id = $_GET['userid'];
     $sql = "SELECT email FROM user WHERE email='$id'";
     $result = mysqli_query($conn, $sql) or die ("can't");

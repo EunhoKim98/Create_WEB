@@ -1,6 +1,7 @@
 <?php 
       include('../check_session.php');
-      $conn = mysqli_connect("localhost", "root", "hacker98!", "web") or die ("Can't access DB");
+      include('../DB_config.php');
+      
 ?>
 <html lang="ko">
 <head>

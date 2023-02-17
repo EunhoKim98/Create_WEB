@@ -1,5 +1,6 @@
 <?php 
       include('../check_session.php');
+      include('../DB_config.php');
 ?>
 <html lang="ko">
   <head>
@@ -177,7 +178,6 @@
             echo '<script>alert("Wrong approach.");history.back();</script>';
         }
 
-        $conn = mysqli_connect("localhost", "root", "hacker98!", "web") or die ("Can't access DB");
         $select_query = "SELECT * FROM article WHERE idx = $idx";
         $result = mysqli_query($conn, $select_query);
         $row = mysqli_fetch_assoc($result);

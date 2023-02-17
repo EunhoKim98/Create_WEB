@@ -1,5 +1,6 @@
 <?php
     include('../check_session.php');
+    include('../DB_config.php');
       
     // Get the posted data
     $title = $_POST["title"];
@@ -16,7 +17,6 @@
           move_uploaded_file($file_tmp, $file_destination);
       }
 
-    $conn = mysqli_connect("localhost", "root", "hacker98!", "web") or die ("Can't access DB");
     $insert_query = "INSERT INTO article(board, title, content, file, article_pw, date, email) VALUE";
     $insert_query .= "('$board', '$title', '$content', '$file_destination', '$password', '$today', '$email')";
     $result = mysqli_query($conn, $insert_query) or die('ca');

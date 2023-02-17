@@ -1,8 +1,8 @@
 <?php
   include('../mail.php');
-  
+  include('../DB_config.php');
 
-  $conn = mysqli_connect("localhost", "root", "hacker98!", "web") or die ("Can't access DB");
+
   $first_name = $_POST['FirstName'];
   $last_name = $_POST['LastName'];
   $email = $_POST['Email'];

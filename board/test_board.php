@@ -1,5 +1,6 @@
 <?php 
       include('../check_session.php');
+      include('../DB_config.php');
 ?>
 <html lang="ko"><head>
     <meta charset="utf-8">
@@ -202,7 +203,6 @@
           </thead>
           <tbody>
           <?php
-            $conn = mysqli_connect("localhost", "root", "hacker98!", "web") or die ("Can't access DB");
             $select = "SELECT * FROM article WHERE board = 'test' ORDER BY idx DESC";
             $result = mysqli_query($conn, $select) or die("!!!!!!!!!!!!!!!");
             while($row = mysqli_fetch_array($result)){

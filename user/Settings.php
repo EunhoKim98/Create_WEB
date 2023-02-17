@@ -1,5 +1,7 @@
 <?php 
       include('../check_session.php');
+      include('../DB_config.php');
+
 ?>
 <html>
 <head>

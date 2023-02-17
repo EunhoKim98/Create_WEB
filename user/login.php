@@ -2,12 +2,15 @@
 
 session_start();
 include_once('../mail.php');
+include('../DB_config.php');
+
 function login($username, $password) {
+  
   // Connect to the database and retrieve the user information
-  $conn = mysqli_connect("localhost", "root", "hacker98!", "web") or die("Can't");
   $query = "SELECT * FROM user WHERE email = '$username'";
   $result = mysqli_query($conn, $query) or die('cantttt'); 
   $user = mysqli_fetch_assoc($result);
+
   // Check if the provided password matches the stored password
   if ($user['pw'] == $password) {
     // Store the user ID in the session
