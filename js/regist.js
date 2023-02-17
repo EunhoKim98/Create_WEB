@@ -28,6 +28,7 @@ const checkId = () => {
   xhr.send();
   }
 
+
 const sendit = () => {
   var userid = document.getElementById('email');
   var password = document.getElementById('password');
