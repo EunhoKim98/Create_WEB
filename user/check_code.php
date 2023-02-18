@@ -1,5 +1,5 @@
 <?php
-  $conn = mysqli_connect("localhost", "root", "hacker98!", "web") or die ("Can't access DB");
+  include('../DB_config.php');
   $code = $_POST['code'];
 
   $select_query = "SELECT * FROM confirmation_code WHERE code='$code'";

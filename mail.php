@@ -11,6 +11,11 @@
   // Send the email
   $result = mail($email, $subject, $message, $headers);
   $insert_code = "INSERT INTO confirmation_code(code, email) VALUES ('$confirm_code', '$email')";
-  mysqli_query($conn, $insert_code);
-
+  $result = mysqli_query($conn, $insert_code);
+  if($result){
+    echo "O";
+  }
+  else{
+    echo "X";
+  }
 ?>
