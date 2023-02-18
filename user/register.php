@@ -1,5 +1,4 @@
 <?php
-  include('../mail.php');
   include('../DB_config.php');
 
 
@@ -15,21 +14,16 @@
   VALUE ('$email', '$password', '$nickname', '$first_name','$last_name', '$address', 0)";
   $result = mysqli_query($conn, $insert_query);
   echo "<script>alert('A verification code has been sent to the email. Please check.')</script>";
-  echo "<script>"
+  
+  echo '<script src="../js/send_mail.js"></script>';
+  echo '<input type="hidden" name="Email" id="email2" value="<?php echo $email;?>">';
+  echo '<button type="button" onload="sendmail()"></button>';
+
+
   mysqli_close($conn);
   echo "<script>location.href='check_code.html'</script>";
 ?>
-  
-<script src="//code.jquery.com/jquery.min.js"></script>
-<script>
-  $a.jax({
-    url: "../mail.php",
-    type: "post";
-    data : {
-      email: $('#email').val();
-    }
 
-  })
-</script>
+
 
 

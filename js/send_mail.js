@@ -1,4 +1,3 @@
-
 const sendmail = () => {
   var email = document.getElementById("email2");
   var result = document.getElementById('send_result');
