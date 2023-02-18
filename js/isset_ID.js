@@ -30,3 +30,9 @@ const exist_ID = () => {
     xhr.open("GET", "isset_id.php?userid="+userid.value+"&first="+first.value+"&last="+last.value);
     xhr.send();
     }
+
+const send_mail = () => {
+  var userid = document.getElementById("email");
+  var result_send = document.getElementById("result_send");
+
+}
