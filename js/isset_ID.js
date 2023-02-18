@@ -31,8 +31,3 @@ const exist_ID = () => {
     xhr.send();
     }
 
-const send_mail = () => {
-  var userid = document.getElementById("email");
-  var result_send = document.getElementById("result_send");
-
-}
