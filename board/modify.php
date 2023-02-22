@@ -184,7 +184,7 @@
     ?>
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
         <br>
-        <h1>Write Article</h1>
+        <h1>Modify Article</h1>
         <form action="write.php" method="POST" enctype="multipart/form-data">
         
         <div class="input-group mb-3">
