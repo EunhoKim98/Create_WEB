@@ -40,7 +40,7 @@ session_check 완(2023_02_10)<br/>
 조회수 완(2023_02_13)<br/>
 게시글 리스트 조회 완(2023_02_12)<br/>
 게시글 클릭 및 읽기 완(2023_02_12)<br/>
-
+find_password -> 완료(2023_02_16)
 
 DB<br/>
 <img src=image/MYSQL_ERD.png>
