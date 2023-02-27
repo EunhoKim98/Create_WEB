@@ -24,21 +24,16 @@ const checkId = () => {
       }
     }
   }
-  xhr.open("GET", "checkid.php?userid="+userid.value);
-  xhr.send();
+}
+const confirm_password = () => {
+  if(password.value != password2.value){
+    alert('The password is different from the confirm password.');
+    password.focus();
+    return false;
   }
+}
 
-
-const sendit = () => {
-  var userid = document.getElementById('email');
-  var password = document.getElementById('password');
-  var password2 = document.getElementById('confirm_password');
-  var first_name = document.getElementById('first_name');
-  var last_name = document.getElementById('last_name');
-  var address = document.getElementById('address');
-  var nickname = document.getElementById('nickname');
-
-
+const exam = () => {
   if(password.value != password2.value){
     alert('The password is different from the confirm password.');
     password.focus();
